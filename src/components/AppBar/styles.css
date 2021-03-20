@@ -1,0 +1,40 @@
+
+.bgColor {
+  background-color: #0b567d !important;
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+.drawerList{
+  width: 15rem;
+}
+.toolbarActions{
+  display: flex;
+}
+.right{
+  position: absolute;
+  right: 1rem;
+}
+
+.profileIcon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.btnMenu:focus {
+  outline: none;
+}
+.btnMenu:hover, .btnNotific:hover {
+  background-color: white !important;
+  color: #0b567d !important;
+}
+
+.btnLogout {
+  background-color: #0b567d !important;
+  border-color: white !important;
+}
+.btnLogout:hover {
+  background-color: #c82333 !important;
+}

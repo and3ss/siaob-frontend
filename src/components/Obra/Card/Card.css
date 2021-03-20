@@ -1,0 +1,55 @@
+  
+.obra-card {
+  border-radius: 8px;
+  border: 1px solid #c3c3c3;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
+  position: relative;
+}
+.obra-card > div {
+  flex-grow: 1;
+  text-align: center;
+}
+.obra-card .details {
+  display: grid;
+}
+.obra-card .respo-task {
+  display: flex;
+}
+.obra-card .name {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.obra-card .obra-image {
+  max-width: 100px;
+  margin-right: 1rem;
+}
+
+.obra-card .title {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+.obra-card .respo-task{
+  text-align: -webkit-center;
+}
+.obra-card .respo-task .image {
+  max-width: 50px;
+}
+
+.obra-card:hover {
+  background-color: #efefefa1;
+  cursor: pointer;
+}
+
+
+@media (max-width: 720px){
+  .charts{
+    display: none;
+  }
+  .respo-task .details {
+    display: none;
+  }
+}

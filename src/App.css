@@ -1,0 +1,54 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 1rem;
+}
+
+@media (max-width: 1080px){
+  html{
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px){
+  html{
+    font-size: 87.5%;
+  }
+}
+
+.bgThemeColor {
+  background-color: #0b567d !important;
+}
+
+.ThemeColor {
+  color: #0b567d !important;
+}
+
+.middleCenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  vertical-align: middle;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 40vh;
+}
+
+.middleTop {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  vertical-align: middle;
+  width: 100%;
+  min-height: 100%;
+}
+
+.text-center{
+  text-align: center;
+}
