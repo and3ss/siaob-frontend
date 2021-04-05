@@ -5,24 +5,23 @@ import AppBar from '../components/AppBar';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import LanguageIcon from '@material-ui/icons/Language';
-import DescriptionIcon from '@material-ui/icons/Description';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import './styles.css';
+import { Container, Toolbar } from '@material-ui/core';
 
 
 const Layout = ({ children }) => {
 
   const { signed, user } = useAuth();
-
-  var enabled = (user.nivel >= 2) ? true : false ;
+  
+  var enabled = true ;
   
   const items = [
     "divider",
-    { label: "Dashboard", enabled: enabled, type: "item", icon: <InsertChartIcon className="color"/>, to: './dashboard' },
-    { label: "Relatorio", enabled: enabled, type: "item", icon: <ViewListIcon className="color"/>, to: './Relatorio' },
+    { label: "Dashboard", enabled: enabled, type: "item", icon: <InsertChartIcon className="color"/>, to: './Dashboard' },
+    { label: "Obras", enabled: enabled, type: "item", icon: <ViewListIcon className="color"/>, to: './Obras' },
     {
       label: "WebServices",
       type: "mainItem", 
@@ -44,22 +43,18 @@ const Layout = ({ children }) => {
   ];
 
   return (
-    <div className='layout'>
-      <div>
-        { signed ? (
-          <AppBar items={items} />
-        ) : (
-          <>
-          </>
-        )}
-      </div>
+    <React.Fragment>
+      { signed ? (
+        <AppBar items={items} />
+      ) : (
+        <>
+        </>
+      )}
 
       <main>
-      
         { children }
-      
       </main>
-    </div>
+    </React.Fragment>
   )
 }
 

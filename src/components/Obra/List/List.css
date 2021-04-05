@@ -1,4 +1,7 @@
+.obra-list{
+  height: 60vh;
+  overflow:auto;
+}
 .obra-list .obra-card{
   margin-bottom: 1rem;
-  align-items: center;
 }

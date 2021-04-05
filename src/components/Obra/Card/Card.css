@@ -5,38 +5,50 @@
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.15);
   display: flex;
   padding: 1rem;
-  align-items: flex-start;
-  position: relative;
+  align-items: center;
+  /* align-self: stretch; */
+  /* position: relative; */
 }
 .obra-card > div {
   flex-grow: 1;
   text-align: center;
 }
-.obra-card .details {
+.obra-card__details,
+.obra-card__repo_details {
   display: grid;
 }
-.obra-card .respo-task {
+.obra-card__repo_details {
+  width: 10rem;
+}
+.obra-card__details{
+  text-align: left !important;
+  width: 15%;
+}
+.obra-card__respo-task{
+  width: min-content;
+}
+.obra-card__respo-task {
   display: flex;
 }
-.obra-card .name {
-  font-size: 1rem;
-  color: #2c3e50;
+.obra-card__address, .obra-card__price{
+  margin-top: .2rem;
 }
 
-.obra-card .obra-image {
-  max-width: 100px;
+.obra-card__obra-image {
+  border: 1px solid #ddd;
+  border-radius: .2rem;
+  padding: .3rem;
+  width: 8rem;
   margin-right: 1rem;
 }
 
-.obra-card .title {
-  font-size: 1rem;
-  color: #2c3e50;
-}
-.obra-card .respo-task{
-  text-align: -webkit-center;
-}
-.obra-card .respo-task .image {
-  max-width: 50px;
+.obra-card__profile-image {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: .3rem;
+  height: 100%;
+  width: 5rem;
+  margin-right: 1rem;
 }
 
 .obra-card:hover {
@@ -45,11 +57,14 @@
 }
 
 
-@media (max-width: 720px){
-  .charts{
+@media (max-width: 750px){
+  .obra-card__charts{
     display: none;
   }
-  .respo-task .details {
+}
+
+@media (max-width: 600px){
+  .obra-card__respo-task {
     display: none;
   }
 }

@@ -17,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 
 import './styles.css';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -45,6 +46,23 @@ const SignIn = () => {
 
   const handleSignIn = (event) => {
     event.preventDefault();
+    // const config = {
+    //   headers: {
+    //     "Content-type": "application/json",
+    //     "Authorization": `Bearer ${Cookies.get("jwt")}`,
+    //   },
+    // };
+    // axios.post('http://127.0.0.1:8000/api/auth/login', {
+    //   email: username,
+    //   password: pass
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
     signIn(username, pass, isRemeberChecked);
   }
   
@@ -121,11 +139,12 @@ const SignIn = () => {
                   </Link>
                 </Grid>
               </Grid>
-              <Box mt={5}>
-                <Copyright />
-              </Box>
             </form>
           </div>
+          
+          <Box mt={5}>
+            <Copyright />
+          </Box>
         </Grid>
           </>
         )}

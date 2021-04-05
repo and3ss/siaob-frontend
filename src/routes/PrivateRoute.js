@@ -16,9 +16,10 @@ const PrivateRoute = ({ component: Component, ...props }) => {
   return (
     <Route
       {...props}
-      render={ () => signed
-        ? <Component {...props} />
-        : <Redirect to='/' /> 
+      render={ 
+        () => signed
+          ? <Component {...props} />
+          : <Redirect to='/' /> 
       }
     />
   )

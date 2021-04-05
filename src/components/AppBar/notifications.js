@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Badge, Menu, MenuItem } from "@material-ui/core";
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-const Notifications = ({username, img}) => {
+const Notifications = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
 

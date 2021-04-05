@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { ListItemIcon, ListItemText, AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
+import { ListItemIcon, ListItemText, AppBar, Toolbar, IconButton, Grid, Typography } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import MenuIcon from '@material-ui/icons/Menu';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -101,10 +101,12 @@ const Sidebar = ({ items, depthStep, depth, expanded }) => {
           <IconButton className="btnMenu" edge="start" onClick={handleMenuBtn} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <div style={{flexGrow: 1}} />
+          <Typography variant="h6" style={{flexGrow: 1}}>
+            Piloto
+          </Typography>
           <div className="toolbarActions">
             <Notifications />
-            <Profile/>
+            <Profile />
           </div>
         </Toolbar>
       </AppBar>
@@ -140,6 +142,7 @@ const Sidebar = ({ items, depthStep, depth, expanded }) => {
           ))}
         </List>
       </Drawer>
+      <Toolbar />
     </div>
   );
 }

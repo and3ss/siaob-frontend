@@ -1,0 +1,13 @@
+
+.obra-detail__title {
+  text-align: center;
+}
+.obra-detail__subtitles {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.obra-detail__description p {
+  margin-top: 1rem;
+}

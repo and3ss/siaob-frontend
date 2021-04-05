@@ -3,34 +3,34 @@ import './Card.css';
 import obraIcon from '../../../imgs/obra.jpg';
 import profile from '../../../imgs/profile.jpg';
 
-const ObraCard = ({obra}) => (
-  <div className="obra-card">
+const ObraCard = ({obra, onClick}) => (
+  <div className="obra-card" onClick={() => onClick(obra.id)}>
     <img
+      loading="lazy"
       src={obraIcon}
-      alt="titulo"
-      className="obra-image"
+      alt="obra"
+      className="obra-card__obra-image"
     />
-    <div className="details">
-      <h3 className="title">{obra.titulo}</h3>
-      <span className="address">{obra.local}</span>
-      <span className="price">R$ {obra.valor}</span>
+    <div className="obra-card__details">
+      <h4 className="obra-card__title">{obra.titulo}</h4>
+      <span className="obra-card__address">{obra.local}</span>
+      <span className="obra-card__price">R$ {obra.valor}</span>
     </div>
-    <div className="actual-task">
-      <span className="description">{obra.tarefa}</span>
-    </div>
-    <div className="respo-task">
+    <div className="obra-card__respo-task">
       <img
+        loading="lazy"
         src={profile}
-        alt="titulo"
-        className="image"
+        alt="perfil"
+        className="obra-card__profile-image"
       />
-      <div className="details">
-        <h3 className="name">{obra.nomeResponsavel}</h3>
-        <span className="sector">{obra.setorResponsavel}</span>
+      <div className="obra-card__repo_details">
+        <h4 className="obra-card__repo_task">{obra.tarefa}</h4>
+        <h5 className="obra-card__repo_name">{obra.nomeResponsavel}</h5>
+        <span className="obra-card__sector">{obra.setorResponsavel}</span>
       </div>
     </div>
-    <div className="charts 1">Gráfico 1</div>
-    <div className="charts 2">Gráfico 2</div>
+    <div className="obra-card__charts 1">Gráfico 1</div>
+    <div className="obra-card__charts 2">Gráfico 2</div>
   </div>
 );
 export default ObraCard;

@@ -1,0 +1,14 @@
+
+.alertResponse {
+  /* position: absolute !important; */
+  right: 30px;
+}
+.alerts {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  display: grid;
+}
+.alertResponse{
+  cursor: pointer;
+}

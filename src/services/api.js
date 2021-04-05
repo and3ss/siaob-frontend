@@ -1,19 +1,35 @@
-export async function apiFunction(formData) {
+import axios from 'axios';
 
-  try {
-    let response = await fetch('http://localhost:8080/piloto/index.php', {
-      method: 'POST',
-      // mode: 'no-cors',
-      headers: {
-        Accept: 'application/json'
-      },
-      body: formData
-    });
+import useAuth from '../hooks/useAuth';
 
-    let json = await response.json();
-    return json;
+const API = () => {
 
-  } catch (err) {
-    console.error(err);
-  }
+  
+  const { token } = useAuth();
+
+  const apiCon = axios.create({
+    baseURL: `http://127.0.0.1:8000`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  apiCon.interceptors.request.use(
+    config => {
+      const token = sessionStorage.getItem('jwt');
+  
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        delete API.defaults.headers.common.Authorization;
+      }
+      return config;
+    },
+  
+    error => Promise.reject(error)
+  );
+  return apiCon;
 }
+
+
+export default API;
