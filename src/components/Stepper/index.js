@@ -2,8 +2,11 @@ import React from 'react';
 import { makeStyles, Step, StepLabel, Stepper, withStyles } from '@material-ui/core';
 import { Check } from '@material-ui/icons';
 import StepConnector from '@material-ui/core/StepConnector';
+import { useTheme } from '@material-ui/core/styles';
 
 const StepperProgress = ({steps, actualStep}) => {
+
+  const theme = useTheme();
 
   const rootStyles = makeStyles({
     root: {
@@ -21,16 +24,16 @@ const StepperProgress = ({steps, actualStep}) => {
     },
     active: {
       '& $line': {
-        borderColor: '#784af4',
+        borderColor: theme.palette.primary[500],
       },
     },
     completed: {
       '& $line': {
-        borderColor: '#784af4',
+        borderColor: theme.palette.primary[500],
       },
     },
     line: {
-      borderColor: '#eaeaf0',
+      borderColor: theme.palette.primary[100],
       borderTopWidth: 3,
       borderRadius: 1,
     },
@@ -38,13 +41,10 @@ const StepperProgress = ({steps, actualStep}) => {
 
   const useQontoStepIconStyles = makeStyles({
     root: {
-      color: '#eaeaf0',
+      color: theme.palette.primary[500],
       display: 'flex',
       height: 22,
       alignItems: 'center',
-    },
-    active: {
-      color: '#784af4',
     },
     circle: {
       width: 8,
@@ -53,7 +53,6 @@ const StepperProgress = ({steps, actualStep}) => {
       backgroundColor: 'currentColor',
     },
     completed: {
-      color: '#784af4',
       zIndex: 1,
       fontSize: 18,
     },

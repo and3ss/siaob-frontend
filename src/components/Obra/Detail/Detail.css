@@ -1,4 +1,7 @@
 
+.obra-detail {
+  margin-top: 1.4rem;
+}
 .obra-detail__title {
   text-align: center;
 }
@@ -8,6 +11,14 @@
   margin-top: 1rem;
 }
 
-.obra-detail__description p {
+.obra-detail__body > div{
   margin-top: 1rem;
+}
+
+.obra-detail__descriptions p {
+  margin-top: 1rem;
+}
+
+.obra-detail__photos {
+  overflow: auto;
 }

@@ -1,4 +1,4 @@
-import { Container, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@material-ui/core';
+import { Container, FormControl, Grid, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import TimeoutAlert from '../../TimoutAlerts';
@@ -38,7 +38,7 @@ var obras = [
   }
 ];
 
-let _ID = 0;
+let idAlerts = 0;
 const ObraSearch = () => {
   const [searchTarefa, setSearchTarefa] = useState("");
   const [searchStatus, setSearchStatus] = useState("");
@@ -50,7 +50,7 @@ const ObraSearch = () => {
     ) : obras
 
   const [alerts, setAlerts] = useState([]);
-  const addAlert = (severity, message) => setAlerts(oldArray => [...oldArray, { id: _ID++, severity: severity, message }]);
+  const addAlert = (severity, message) => setAlerts(oldArray => [...oldArray, { id: idAlerts++, severity: severity, message }]);
   const deleteAlert = id => setAlerts(alerts => alerts.filter(m => m.id !== id));
     
   const [idObra, setIdObra] = useState('');
@@ -73,9 +73,7 @@ const ObraSearch = () => {
 
   return (
     <Container>
-      <Typography severity="h4" component="h4" gutterBottom>
-        Obras
-      </Typography>
+      <h2 className="obra-search__title">OBRAS</h2>
 
       <Grid 
         container

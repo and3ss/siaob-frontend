@@ -7,8 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -17,7 +15,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 
 import './styles.css';
-import axios from 'axios';
 
 function Copyright() {
   return (
@@ -38,32 +35,11 @@ const SignIn = () => {
   
   const [username, setUsername] = useState(null);
   const [pass, setPass] = useState(null);
-  const [isRemeberChecked, setRemeberChecked] = useState(false);
-
-  const handleCheckbox = () => {
-    setRemeberChecked(!isRemeberChecked);
-  }
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    // const config = {
-    //   headers: {
-    //     "Content-type": "application/json",
-    //     "Authorization": `Bearer ${Cookies.get("jwt")}`,
-    //   },
-    // };
-    // axios.post('http://127.0.0.1:8000/api/auth/login', {
-    //   email: username,
-    //   password: pass
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
 
-    signIn(username, pass, isRemeberChecked);
+    signIn(username, pass);
   }
   
   if (loading) {
@@ -118,10 +94,6 @@ const SignIn = () => {
                 label="Senha"
                 autoComplete="current-password"
                 onChange = { e => setPass(e.target.value) }
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" onChange={handleCheckbox} checked={isRemeberChecked}/>}
-                label="Lembrar meu usuário"
               />
               <Button
                 type="submit"

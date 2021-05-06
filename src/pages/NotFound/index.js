@@ -5,7 +5,7 @@ import './styles.css';
 
 const NotFound = () => {
   return (
-    <Container className="center">
+    <Container>
       <h1 className="h1Font">404</h1>
       <h3>PÁGINA NÃO ENCONTRADA</h3>
     </Container>

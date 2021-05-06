@@ -9,7 +9,6 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import './styles.css';
-import { Container, Toolbar } from '@material-ui/core';
 
 
 const Layout = ({ children }) => {

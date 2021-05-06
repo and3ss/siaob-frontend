@@ -1,8 +1,4 @@
 
-.bgColor {
-  background-color: #0b567d !important;
-}
-
 .drawerHeader {
   display: flex;
   justify-content: flex-end;
@@ -25,10 +21,6 @@
 
 .btnMenu:focus {
   outline: none;
-}
-.btnMenu:hover, .btnNotific:hover {
-  background-color: white !important;
-  color: #0b567d !important;
 }
 
 .btnLogout {

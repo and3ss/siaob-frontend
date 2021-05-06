@@ -96,7 +96,7 @@ const Sidebar = ({ items, depthStep, depth, expanded }) => {
 
   return (
     <div>
-      <AppBar position="fixed" className="bgColor">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton className="btnMenu" edge="start" onClick={handleMenuBtn} color="inherit" aria-label="menu">
             <MenuIcon />
