@@ -8,6 +8,7 @@ import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import './styles.css';
 
 
@@ -36,7 +37,8 @@ const Layout = ({ children }) => {
       enabled: enabled, 
       icon: <SettingsIcon className="color" />,
       items: [
-        { label: "Usuários", type: "subItem", icon: <PeopleAltIcon className="color" />, to: './Users' }
+        { label: "Usuários", type: "subItem", icon: <PeopleAltIcon className="color" />, to: './Users' },
+        { label: "Etapas", type: "subItem", icon: <FormatListNumberedIcon className="color" />, to: './Steps' },
       ]
     }
   ];
