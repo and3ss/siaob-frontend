@@ -9,6 +9,8 @@ import Users from '../pages/Users';
 import Dashboard from '../pages/Dashboard';
 import Obras from '../pages/Obras';
 import Obra from '../pages/Obras/Obra';
+import CadastroObra from '../pages/CadastroObra';
+import Steps from '../pages/Steps';
 import NotFound from '../pages/NotFound';
 
 const Routes = () => (
@@ -18,6 +20,8 @@ const Routes = () => (
     <PrivateRoute path="/Dashboard" component={Dashboard} />
     <PrivateRoute path="/Obras" component={Obras} />
     <PrivateRoute path="/Obra" component={Obra} />
+    <PrivateRoute path="/CadastroObra" component={CadastroObra} />
+    <PrivateRoute path="/Steps" component={Steps} />
     <Route path="*" component={NotFound} exact />
   </Switch>
 );

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import { Controller } from "react-hook-form";
-import TextField from "@material-ui/core/TextField";
-import "./styles.css";
+import { TextField } from '@material-ui/core';
 
-function FormInput({ register, control, name, label, errorobj, ...otherProps }) {
+const FormDatePicker = ({ register, control, name, label, errorobj }) => {
+
   let isError = false;
   let errorMessage = "";
 
@@ -21,14 +21,17 @@ function FormInput({ register, control, name, label, errorobj, ...otherProps }) 
         <TextField 
           label={label}
           fullWidth={true}
+          type="date"
           variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
           inputRef={register}
           error={isError}
           helperText={errorMessage}
-          {...field} 
-          {...otherProps}/>
+          {...field} />
       } />
   );
-}
+};
 
-export default FormInput;
+export default FormDatePicker;

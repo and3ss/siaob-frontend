@@ -20,7 +20,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import TimeoutAlert from "../../components/TimoutAlerts";
 import './styles.css';
 import schema from "./schema";
-import axiosInstance from "../../services/axiosInstance";
+import { mainAxios } from "../../services/axiosInstance";
 import FormSelect from "../../components/FormsUI/FormSelect";
 
 import { DndProvider } from 'react-dnd'
@@ -72,7 +72,7 @@ const Steps = () => {
   }
 
   const getUsers = async () => {
-    axiosInstance(user.token).get('/users/')
+    mainAxios(user.token).get('/users/')
       .then(function (response) {
         setStepsData(response.data);
       })
@@ -83,7 +83,7 @@ const Steps = () => {
   }
 
   const getUser = async (idUser) => {
-    axiosInstance(user.token).get(`/users/${idUser}`)
+    mainAxios(user.token).get(`/users/${idUser}`)
       .then(function (response) {
         reset(response.data);
       })
@@ -95,7 +95,7 @@ const Steps = () => {
   }
 
   const handleInsert = async (formData) => {
-    axiosInstance(user.token).post('/users/store', formData)
+    mainAxios(user.token).post('/users/store', formData)
     .then(function (response) {
       console.log(response);
     })
@@ -106,7 +106,7 @@ const Steps = () => {
   }
 
   const handleUpdate = async (formData) => {
-    axiosInstance(user.token).get(formData)
+    mainAxios(user.token).get(formData)
     .then(function (response) {
       console.log(response);
     })

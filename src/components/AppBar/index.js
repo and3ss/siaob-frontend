@@ -102,7 +102,7 @@ const Sidebar = ({ items, depthStep, depth, expanded }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" style={{flexGrow: 1}}>
-            Piloto
+            SIAOB
           </Typography>
           <div className="toolbarActions">
             <Notifications />

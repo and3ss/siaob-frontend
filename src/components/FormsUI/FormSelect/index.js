@@ -3,13 +3,19 @@ import { MenuItem, TextField } from "@material-ui/core";
 import { Controller } from "react-hook-form";
 import "./styles.css";
 
-function FormSelect({ register, control, name, label, options, required, errorobj }) {
+function FormSelect({ register, control, name, label, options, errorobj, onSelect }) {
   let isError = false;
   let errorMessage = "";
-  
+
   if (errorobj && errorobj.hasOwnProperty(name)) {
     isError = true;
     errorMessage = errorobj[name].message;
+  }
+
+  const handleSelect = (value) => {
+    if (onSelect){
+      onSelect(value);
+    }
   }
 
   return (
@@ -17,8 +23,8 @@ function FormSelect({ register, control, name, label, options, required, errorob
       name={name}
       control={control}
       defaultValue=""
-      render={({ field }) => 
-        <TextField 
+      render={({ field }) =>
+        <TextField
           label={label}
           fullWidth={true}
           variant="outlined"
@@ -26,7 +32,8 @@ function FormSelect({ register, control, name, label, options, required, errorob
           error={isError}
           helperText={errorMessage}
           select
-          {...field} >
+          {...field}
+          onChange={(value) => {field.onChange(value); handleSelect(value);} } >
           {options.map((option, i) => {
             return (
               <MenuItem key={i} value={option.value}>

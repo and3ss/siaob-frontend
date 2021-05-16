@@ -1,11 +1,14 @@
-import { Container, FormControl, Grid, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { Container, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import { mainAxios } from '../../../services/axiosInstance';
+import LoadingSpinner from '../../LoadingSpinner';
 import TimeoutAlert from '../../TimoutAlerts';
 import ObraList from '../List/List';
 import './Search.css';
 
-var obras = [
+var oldObras = [
   {
     id : 1,
     status : "not_started",
@@ -38,10 +41,34 @@ var obras = [
   }
 ];
 
+const useStyles = makeStyles(theme => ({
+  grid: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    padding: '.6rem 1rem',
+    border: '1px solid #c3c3c3',
+    borderRadius: '8px',
+    marginBottom: '1rem',
+    fontWeight: 600,
+    fontSize: '.8rem',
+    boxShadow: '0 2px 7px 0 rgba(0, 0, 0, 0.15)',
+  },
+}));
+
 let idAlerts = 0;
 const ObraSearch = () => {
+
+  const { user } = useAuth();
+
+  var classes = useStyles();
+
   const [searchTarefa, setSearchTarefa] = useState("");
   const [searchStatus, setSearchStatus] = useState("");
+
+  const [isLoading, setLoading] = useState(true);
+  const [obras, setObras] = useState([]);
+  const [idObra, setIdObra] = useState('');
+  const [redirState, setRedirState] = useState(false);
 
   const results = searchTarefa || searchStatus ?
     obras.filter(obra =>
@@ -52,17 +79,7 @@ const ObraSearch = () => {
   const [alerts, setAlerts] = useState([]);
   const addAlert = (severity, message) => setAlerts(oldArray => [...oldArray, { id: idAlerts++, severity: severity, message }]);
   const deleteAlert = id => setAlerts(alerts => alerts.filter(m => m.id !== id));
-    
-  const [idObra, setIdObra] = useState('');
-  const [redirState, setRedirState] = useState(false);
-  let redirecting = redirState 
-    ? (<Redirect push 
-        to={{
-          pathname: '/Obra',
-          // search: "?utm=your+face",
-          state: { idObra: idObra }
-        }} />)
-    : '';
+
   useEffect(() => {
     if (idObra !== ''){
       setRedirState(true);
@@ -70,6 +87,33 @@ const ObraSearch = () => {
       setRedirState(false);
     }
   }, [idObra])
+
+  useEffect(() => {
+    getObras();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const getObras = async () => {
+    mainAxios(user.token).get('/obras/')
+      .then(function (response) {
+        setObras(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        addAlert("error", "Erro ao resgatar obras");
+        console.log(error)
+        setLoading(false);
+      });
+  }
+
+  let redirecting = redirState
+    ? (<Redirect push 
+      to={{
+        pathname: '/Obra',
+        // search: "?utm=your+face",
+        state: { idObra: idObra }
+      }} />)
+    : '';
 
   return (
     <Container>
@@ -108,14 +152,18 @@ const ObraSearch = () => {
       <Grid 
         container
         direction="row"
-        className="obra-search__header">
+        className={classes.grid}>
 
         <div className="firstCol">DETALHES DA OBRA</div>
         <div className="secondCol">ETAPA ATUAL</div>
         <div className="thirdCol">GRÁFICOS</div>
       </Grid>
 
-      <ObraList obras={results} setIdObra={setIdObra}/>
+      {
+        isLoading 
+          ? <LoadingSpinner style={{textAlign: 'center'}} /> 
+          : <ObraList obras={results} setIdObra={setIdObra}/>
+      }
       
       <div className="alerts">
         {alerts.map(m => (

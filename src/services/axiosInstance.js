@@ -1,8 +1,6 @@
-/* eslint-disable import/no-anonymous-default-export */
 import axios from "axios";
 
-<useAuth />
-export default (token) => {
+export const mainAxios = (token) => {
   const { REACT_APP_API_URL } = process.env;
 
   let headers = {};
@@ -11,12 +9,12 @@ export default (token) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const axiosInstance = axios.create({
+  const mainAxiosInstance = axios.create({
     baseURL: REACT_APP_API_URL,
     headers,
   });
 
-  axiosInstance.interceptors.response.use(
+  mainAxiosInstance.interceptors.response.use(
     function (response) {
       return response
     },
@@ -40,5 +38,51 @@ export default (token) => {
     }
   );
 
-  return axiosInstance;
+  return mainAxiosInstance;
+};
+
+export const portalAxios = () => {
+  const { REACT_APP_API_URL_PORTAL_TRANSP, REACT_APP_API_KEY_PORTAL_TRANSP } = process.env;
+
+  const portalAxiosInstance = axios.create({
+    baseURL: REACT_APP_API_URL_PORTAL_TRANSP,
+    headers: {'chave-api-dados': `${REACT_APP_API_KEY_PORTAL_TRANSP}`}
+  });
+
+  portalAxiosInstance.interceptors.response.use(
+    function (response) {
+      return response
+    },
+    function (error) {
+      if (!error.response) {
+        return new Promise((resolve, reject) => {
+          reject(error);
+          alert("Servidor do Portal da Transparência com problemas, favor falar com administrador")
+        });
+      }
+    }
+  );
+
+  return portalAxiosInstance;
+};
+
+export const customAxios = (baseURL) => {
+
+  const customAxiosInstance = axios.create({ baseURL: baseURL });
+
+  customAxiosInstance.interceptors.response.use(
+    function (response) {
+      return response
+    },
+    function (error) {
+      if (!error.response) {
+        return new Promise((resolve, reject) => {
+          reject(error);
+          alert("Servidor Externo com problemas, favor falar com administrador. Link: "+baseURL)
+        });
+      }
+    }
+  );
+
+  return customAxiosInstance;
 };

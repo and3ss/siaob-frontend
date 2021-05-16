@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormInput from "../../components/FormsUI/FormInput";
 
-
 import {
   GridOverlay,
   DataGrid,
@@ -27,7 +26,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import TimeoutAlert from "../../components/TimoutAlerts";
 import './styles.css';
 import schema from "./schema";
-import axiosInstance from "../../services/axiosInstance";
+import { mainAxios } from "../../services/axiosInstance";
 import FormSelect from "../../components/FormsUI/FormSelect";
 
 function CustomLoadingOverlay() {
@@ -40,19 +39,18 @@ function CustomLoadingOverlay() {
   );
 }
 
-
 let idAlerts = 0;
 const Users = () => {
 
   const { user } = useAuth();
   
   const [isLoading, setLoading] = useState(true);
-  const [userData, setUserData] = useState({});
+  const [selectedUser, setSelectedUser] = useState('');
   const [usersData, setUsersData] = useState([]);
-  const [departments, setDepartments] = useState([
+  const [setores, setsetores] = useState([
     { value: 1, label: "Gestão Técnica" },
-    { value: 2, label: "Responsável Técnico" },
-    { value: 3, label: "Jurídico" },
+    { value: 2, label: "Jurídico" },
+    { value: 3, label: "Responsável Técnico" },
     { value: 4, label: "Engenharia Fiscal" },
     { value: 5, label: "Contabilidade" }
   ]);
@@ -61,11 +59,11 @@ const Users = () => {
   const [openForm, setOpenForm] = useState(false);
 
   const [alerts, setAlerts] = useState([]);
-  const addAlert = (variant, message) => setAlerts(oldArray => [...oldArray, { id: idAlerts++, variant: variant, message }]);
+  const addAlert = (severity, message) => setAlerts(oldArray => [...oldArray, { id: idAlerts++, severity: severity, message }]);
   const deleteAlert = id => setAlerts(alerts => alerts.filter(m => m.id !== id));
 
   useEffect(()=> {
-    getUsers()
+    getUsers();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -82,14 +80,22 @@ const Users = () => {
       )
     },
     {
-      field: 'id_department',
-      headerName: 'Último Nome',
+      field: 'email', 
+      headerName: 'E-mail',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1, 
+      disableClickEventBubbling: true,
+    },
+    {
+      field: 'id_setor',
+      headerName: 'Setor',
       headerAlign: 'center',
       align: 'center',
       flex: 1,
       disableClickEventBubbling: true,
       renderCell: (params) => (
-        <div>{departments.find(({value}) => value === params.value).label}</div>
+        <div>{setores.find(({value}) => value === params.value).label}</div>
       )
     },
     {
@@ -139,58 +145,69 @@ const Users = () => {
   });
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-    // if (actionForm === "new") {
-    //   handleInsert(data);
-    // } else {
-    //   handleUpdate(data);
-    // }
+    // alert(JSON.stringify(data));
+    setLoading(true);
+    if (actionForm === "new") {
+      handleInsert(data);
+    } else {
+      handleUpdate(data);
+    }
   }
 
   const getUsers = async () => {
-    axiosInstance(user.token).get('/users/')
+    mainAxios(user.token).get('/users/')
       .then(function (response) {
         setUsersData(response.data);
+        setLoading(false);
       })
       .catch((error) => {
+        addAlert("error", "Erro ao resgatar usuários");
         console.log(error)
         setLoading(false);
       });
-    setLoading(false);
   }
 
   const getUser = async (idUser) => {
-    axiosInstance(user.token).get(`/users/${idUser}`)
+    setSelectedUser(idUser);
+    mainAxios(user.token).get(`/users/${idUser}`)
       .then(function (response) {
         reset(response.data);
       })
       .catch((error) => {
         console.log(error)
+        setOpenForm(false);
+        addAlert("error", "Erro ao resgatar usuário");
         setLoading(false);
       });
     setLoading(false);
   }
 
   const handleInsert = async (formData) => {
-    axiosInstance(user.token).post('/users/store', formData)
+    mainAxios(user.token).post('/users/store', formData)
     .then(function (response) {
-      console.log(response);
+      addAlert("success", "Sucesso ao cadastrar");
+      getUsers();
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
+      addAlert("error", "Erro ao cadastrar");
+      setLoading(false);
     });
-    setLoading(false);
+    setOpenForm(false);
   }
 
   const handleUpdate = async (formData) => {
-    axiosInstance(user.token).get(formData)
+    mainAxios(user.token).put(`/users/update/${selectedUser}`, formData)
     .then(function (response) {
-      console.log(response);
+      addAlert("success", "Sucesso ao editar");
+      getUsers();
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
+      addAlert("error", "Erro ao editar");
+      setLoading(false);
     });
-    setLoading(false);
+    setOpenForm(false);
   }
 
   return (
@@ -224,12 +241,12 @@ const Users = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <FormSelect control={control} name="id_department" label="Departamento" options={departments} errorobj={errors}/>
+                  <FormSelect control={control} name="id_setor" label="Setor" options={setores} errorobj={errors}/>
                 </Grid>
 
                 <Grid container item xs={12} justify="flex-end">
                   <Button 
-                    variant="contained"
+                    severity="contained"
                     color="primary"
                     onClick={handleSubmit(onSubmit)} >
                     Enviar
@@ -244,7 +261,7 @@ const Users = () => {
           </DialogActions>
         </Dialog>
 
-        <div style={{ height: '80vh', width: '100%' }}>
+        <div className="users__datatable">
           <DataGrid 
             rows={usersData}
             columns={columns}
@@ -258,7 +275,7 @@ const Users = () => {
 
         <div className="alerts">
           {alerts.map(m => (
-            <TimeoutAlert key={m.id} variant={m.variant} {...m} deleteAlert={deleteAlert} />
+            <TimeoutAlert key={m.id} severity={m.severity} {...m} deleteAlert={deleteAlert} />
           ))}
         </div>
     </Container>

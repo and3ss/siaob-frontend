@@ -8,37 +8,38 @@ import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import './styles.css';
 
 
 const Layout = ({ children }) => {
 
   const { signed, user } = useAuth();
-  
+
   var enabled = true ;
-  
+
   const items = [
     "divider",
-    { label: "Dashboard", enabled: enabled, type: "item", icon: <InsertChartIcon className="color"/>, to: './Dashboard' },
-    { label: "Obras", enabled: enabled, type: "item", icon: <ViewListIcon className="color"/>, to: './Obras' },
+    { label: "Dashboard", enabled: enabled, type: "item", icon: <InsertChartIcon color={'primary'}/>, to: './Dashboard' },
     {
-      label: "WebServices",
+      label: "Obras",
       type: "mainItem", 
       enabled: enabled, 
-      icon: <LanguageIcon className="color" />,
+      icon: <ViewListIcon color={'primary'} />,
       items: [
-        { label: "Gestão", type: "subItem", icon: <SettingsApplicationsIcon className="color" />, to: './WebService' }
+        { label: "Listagem", type: "subItem", icon: <PlaylistAddCheckIcon color={'primary'} />, to: './Obras' },
+        { label: "Cadastro", type: "subItem", icon: <PlaylistAddIcon color={'primary'} />, to: './CadastroObra' },
       ]
     },
     {
       label: "Gestão",
       type: "mainItem", 
       enabled: enabled, 
-      icon: <SettingsIcon className="color" />,
+      icon: <SettingsIcon color={'primary'} />,
       items: [
-        { label: "Usuários", type: "subItem", icon: <PeopleAltIcon className="color" />, to: './Users' },
-        { label: "Etapas", type: "subItem", icon: <FormatListNumberedIcon className="color" />, to: './Steps' },
+        { label: "Usuários", type: "subItem", icon: <PeopleAltIcon color={'primary'} />, to: './Users' },
+        // { label: "Etapas", type: "subItem", icon: <FormatListNumberedIcon color={'primary'} />, to: './Steps' },
       ]
     }
   ];

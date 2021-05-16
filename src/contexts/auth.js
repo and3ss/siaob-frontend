@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import axiosInstance from '../services/axiosInstance';
+import { mainAxios } from '../services/axiosInstance';
 
 const AuthContext = createContext({});
 
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   }, [storageToken, storageUser, user]);
 
   async function signIn(user, pass) {
-    axiosInstance().post('/auth/login', {
+    mainAxios().post('/auth/login', {
       email: user,
       password: pass
     })
@@ -37,9 +37,9 @@ export const AuthProvider = ({ children }) => {
       if (error.response && error.response.status === 401) {
         alert("Credenciais Inválidas, tente novamente");
       } else if (error.request) {
-        alert("Nenhuma resposta do servidor, favor falar com administrador(1)");
+        alert("Erro interno do servidor, favor falar com administrador");
       } else {
-        alert("Nenhuma resposta do servidor, favor falar com administrador(2)");
+        alert("Servidor com problemas, favor falar com administrador");
       }
     });
   }

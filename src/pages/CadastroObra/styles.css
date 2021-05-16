@@ -1,0 +1,21 @@
+.cadastro-obra__title{
+  margin: 1rem 0rem;
+}
+
+.cadastro-obra__datatable{
+  height: 80vh;
+  width: 100%;
+}
+
+.cadastro-obra__toolbar-filter{
+  flex: 1;
+}
+
+.cadastro-obra__toolbar-button {
+  margin-left: auto !important;
+  margin: 0rem 0.4rem !important;
+}
+
+.cadastro-obra__search-convenio{
+  height: 100%;
+}

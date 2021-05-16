@@ -19,5 +19,5 @@ export default yup.object().shape({
   first_name: yup.string().required(),
   last_name: yup.string().required(),
   email: yup.string().email().required(),
-  id_department: yup.string().required(),
-});;
+  id_setor: yup.string().required(),
+});
