@@ -36,14 +36,15 @@ setLocale(ptForm);
 // });
 
 export default yup.object().shape({
+  tipo: yup.number().required(),
+  titulo: yup.string().required(),
   dataReferencia: yup.string().required(),
   dataInicioVigencia: yup.string().required(),
-  dataFinalVigencia: yup.string().required(),
+  dataFinalVigencia: yup.string(),
   dataPublicacao: yup.string().required(),
-  dataUltimaLiberacao: yup.string().required(),
+  dataUltimaLiberacao: yup.string(),
   dataConclusao: yup.string().required(),
   situacao: yup.string().required(),
-  titulo: yup.string(),
   objeto: yup.string().required(),
   orgao: yup.string().required(),
   uf: yup.number().required(),

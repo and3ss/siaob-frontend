@@ -19,3 +19,12 @@
 .cadastro-obra__search-convenio{
   height: 100%;
 }
+
+.cadastro-obra__dividerForm{
+  margin: 1rem 0rem !important;
+}
+
+.cadastro-obra__convenio-founded-icon{
+  color: green;
+  font-size: 1rem !important;
+}
