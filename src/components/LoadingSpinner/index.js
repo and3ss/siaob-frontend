@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import './styles.css';
 const LoadingSpinner = ({ ...props}) => (
-  <Container {...props}>
+  <div {...props}>
     <CircularProgress size={75} />
-  </Container>
+  </div>
 );
 
 export default LoadingSpinner;

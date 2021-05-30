@@ -22,8 +22,13 @@
 }
 .obra-card__details{
   text-align: left !important;
-  width: 15%;
+  width: 25%;
 }
+
+.obra-card__title{
+  font-size: 1rem;
+}
+
 .obra-card__respo-task{
   width: min-content;
 }

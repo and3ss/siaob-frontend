@@ -8,39 +8,6 @@ import TimeoutAlert from '../../TimoutAlerts';
 import ObraList from '../List/List';
 import './Search.css';
 
-var oldObras = [
-  {
-    id : 1,
-    status : "not_started",
-    titulo : "PAC 2 - Construção de Quadra Escolar Coberta 005/2013",
-    local : "Esperantina - PI",
-    valor : 510000,
-    tarefa : "Elaborar Edital",
-    nomeResponsavel : "Franciso da Silva",
-    setorResponsavel : "Gestor Técnico"
-  },
-  {
-    id : 2,
-    status : "done",
-    titulo : "ESCOLA MUNICIPAL 4 SALAS - Esperantina - PI (1017696)",
-    local : "Esperantina - PI",
-    valor : 942647.99,
-    tarefa : "Auditar Assinatura",
-    nomeResponsavel : "Maria da Paz",
-    setorResponsavel : "Jurídico"
-  },
-  {
-    id : 3,
-    status : "in_progress",
-    titulo : "ESCOLA MUNICIPAL 4 SALAS - Esperantina - PI (1017696)",
-    local : "Esperantina - PI",
-    valor : 942647.99,
-    tarefa : "Elaborar Projeto",
-    nomeResponsavel : "Maria da Paz",
-    setorResponsavel : "Jurídico"
-  }
-];
-
 const useStyles = makeStyles(theme => ({
   grid: {
     backgroundColor: theme.palette.primary.main,
@@ -107,12 +74,12 @@ const ObraSearch = () => {
   }
 
   let redirecting = redirState
-    ? (<Redirect push 
-      to={{
-        pathname: '/Obra',
-        // search: "?utm=your+face",
-        state: { idObra: idObra }
-      }} />)
+    ? (
+        <Redirect push to={{
+          pathname: '/Obra',
+          search: `?idObra=${idObra}`
+          }} />
+      )
     : '';
 
   return (

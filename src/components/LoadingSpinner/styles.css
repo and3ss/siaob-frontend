@@ -1,0 +1,8 @@
+.loadingSpinner__justify-center {
+  padding: 2rem;
+  margin: auto;
+  display: flex;
+  outline: 0;
+  position: relative;
+  justify-content: center;
+}

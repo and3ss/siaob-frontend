@@ -3,7 +3,7 @@ import { MenuItem, TextField } from "@material-ui/core";
 import { Controller } from "react-hook-form";
 import "./styles.css";
 
-function FormSelect({ register, control, name, label, options, errorobj, onSelect }) {
+function FormSelect({ register, control, name, label, options, errorobj, onSelect, ...otherProps }) {
   let isError = false;
   let errorMessage = "";
 
@@ -33,7 +33,8 @@ function FormSelect({ register, control, name, label, options, errorobj, onSelec
           helperText={errorMessage}
           select
           {...field}
-          onChange={(value) => {field.onChange(value); handleSelect(value);} } >
+          onChange={(value) => {field.onChange(value); handleSelect(value);} }
+          {...otherProps} >
           {options.map((option, i) => {
             return (
               <MenuItem key={i} value={option.value}>

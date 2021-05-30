@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller } from "react-hook-form";
 import { TextField } from '@material-ui/core';
 
-const FormDatePicker = ({ register, control, name, label, errorobj }) => {
+const FormDatePicker = ({ register, control, name, label, errorobj, ...otherProps }) => {
 
   let isError = false;
   let errorMessage = "";
@@ -23,13 +23,13 @@ const FormDatePicker = ({ register, control, name, label, errorobj }) => {
           fullWidth={true}
           type="date"
           variant="outlined"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          InputLabelProps={{ shrink: true }}
           inputRef={register}
           error={isError}
           helperText={errorMessage}
-          {...field} />
+          // InputProps={{ readOnly: true }}
+          {...field}
+          {...otherProps} />
       } />
   );
 };
