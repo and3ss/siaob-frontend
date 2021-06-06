@@ -39,6 +39,7 @@ const Layout = ({ children }) => {
       icon: <SettingsIcon color={'primary'} />,
       items: [
         { label: "Usuários", type: "subItem", icon: <PeopleAltIcon color={'primary'} />, to: './Users' },
+        { label: "Tarefas", type: "subItem", icon: <PeopleAltIcon color={'primary'} />, to: './Tarefas' },
         // { label: "Etapas", type: "subItem", icon: <FormatListNumberedIcon color={'primary'} />, to: './Steps' },
       ]
     }

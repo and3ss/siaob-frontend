@@ -31,9 +31,7 @@ export const mainAxios = (token) => {
 
         window.location = "/";
       } else {
-        return new Promise((resolve, reject) => {
-          reject(error);
-        });
+        return Promise.reject(error);
       }
     }
   );
@@ -58,6 +56,10 @@ export const portalAxios = () => {
         return new Promise((resolve, reject) => {
           reject(error);
           alert("Servidor do Portal da Transparência com problemas, favor falar com administrador")
+        });
+      } else {
+        return new Promise((resolve, reject) => {
+          reject(error);
         });
       }
     }

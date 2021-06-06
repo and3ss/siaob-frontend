@@ -1,0 +1,17 @@
+.dragdrop__tarefa-container{
+  display: flex;
+  align-items: center;
+}
+.dragdrop__tarefa-text{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.dragdrop__btns-actions{
+  padding: 0.3rem !important;
+}
+
+.dragdrop__btn-add{
+  color: green;
+}

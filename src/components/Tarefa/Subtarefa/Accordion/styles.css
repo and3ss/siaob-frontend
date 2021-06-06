@@ -1,0 +1,15 @@
+.timeline__tarefa-title{
+  color: white !important;
+}
+
+.timeline__subtarefa-title{
+  margin: 0 !important;
+}
+
+.timeline__subtarefa-helper{
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.timeline__subtarefa-paper{
+  padding: 1rem 1.5rem;
+}

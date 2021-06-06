@@ -42,7 +42,6 @@ export default yup.object().shape({
   dataInicioVigencia: yup.string().required(),
   dataFinalVigencia: yup.string(),
   dataPublicacao: yup.string().required(),
-  dataUltimaLiberacao: yup.string(),
   dataConclusao: yup.string().required(),
   situacao: yup.string().required(),
   objeto: yup.string().required(),

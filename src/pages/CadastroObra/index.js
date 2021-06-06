@@ -138,7 +138,7 @@ const Obras = () => {
       align: 'center',
       flex: 1, 
       disableClickEventBubbling: true,
-      renderCell: (params) => ( <div>{moment(params.value).format("DD-MM-YYYY HH:mm")}</div> )
+      renderCell: (params) => ( <div>{moment(params.value).format("DD/MM/YYYY HH:mm")}</div> )
     },
     {
       field: 'updated_at', 
@@ -147,7 +147,7 @@ const Obras = () => {
       align: 'center',
       flex: 1, 
       disableClickEventBubbling: true,
-      renderCell: (params) => ( <div>{moment(params.value).format("DD-MM-YYYY HH:mm")}</div> )
+      renderCell: (params) => ( <div>{moment(params.value).format("DD/MM/YYYY HH:mm")}</div> )
     },
     {
       field: 'id',
@@ -163,7 +163,7 @@ const Obras = () => {
       renderCell: (params) => (
         <div>
           {
-            (params.row.tipo === 1)
+            (!params.row.linked)
               ? 
                 <IconButton
                   aria-label="edit"
@@ -551,7 +551,8 @@ const Obras = () => {
           <Button 
             variant="contained"
             color="primary"
-            onClick={handleSubmit(onSubmit)} >
+            onClick={handleSubmit(onSubmit)}
+            disabled={isLoading} >
             Enviar
           </Button>
         </DialogActions>

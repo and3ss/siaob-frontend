@@ -4,7 +4,7 @@ import { Check } from '@material-ui/icons';
 import StepConnector from '@material-ui/core/StepConnector';
 import { useTheme } from '@material-ui/core/styles';
 
-const StepperProgress = ({steps, actualStep}) => {
+const StepperProgress = ({tarefas, tarefaAtual}) => {
 
   const theme = useTheme();
 
@@ -70,10 +70,10 @@ const StepperProgress = ({steps, actualStep}) => {
   }
 
   return (
-    <Stepper className={root.root} activeStep={actualStep} alternativeLabel connector={<QontoConnector />}>
-      {steps.map((label) => (
-        <Step key={label}>
-          <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+    <Stepper className={root.root} activeStep={tarefaAtual-1} connector={<QontoConnector />}>
+      {tarefas.map((tarefa) => (
+        <Step key={tarefa.id}>
+          <StepLabel StepIconComponent={QontoStepIcon}>{tarefa.nome}</StepLabel>
         </Step>
       ))}
     </Stepper>
